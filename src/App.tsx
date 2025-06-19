@@ -1,8 +1,8 @@
+import Body from "./components/Body"
+
 function App() {
   return (
-    <div className="text-center text-9xl font-bold">
-      hello world
-    </div>
+    <Body/>
   )
 }
 
