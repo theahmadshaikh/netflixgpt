@@ -1,25 +1,30 @@
-import { createBrowserRouter } from "react-router-dom"
-import Login from "./Login"
-import Browse from "./Browse"
-import { RouterProvider } from "react-router-dom"
-function App() {
+// components/Body.tsx
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import Login from "./Login";
+import Browse from "./Browse";
+import AuthGate from "./auth/AuthGate";
+import AppLayout from "./AppLayout";
+
+function Body() {
   const appRouter = createBrowserRouter([
     {
-      path: "/login",
-      element: <Login/>
+      path: "/",
+      element: <AuthGate />,
+      children: [
+        {
+          path: "/",
+          element: <AppLayout />,
+          children: [
+            { index: true, element: <Navigate to="/login" /> },
+            { path: "login", element: <Login /> },
+            { path: "browse", element: <Browse /> },
+          ],
+        },
+      ],
     },
-    {
-      path: "/browse",
-      element:<Browse/>
-    }
-  ])
+  ]);
 
-  return (
-    <div>
-      <RouterProvider router={appRouter} />
-    </div>
-  )
+  return <RouterProvider router={appRouter} />;
 }
 
-
-export default App
+export default Body;

@@ -7,6 +7,7 @@ interface FormInputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   required?: boolean;
+  error?: string;
 }
 
 const FormInput: React.FC<FormInputProps> = ({
@@ -16,8 +17,10 @@ const FormInput: React.FC<FormInputProps> = ({
   onChange,
   name,
   required = true,
+  error,
 }) => {
   return (
+  <div className="flex flex-col">
     <input
       type={type}
       name={name}
@@ -25,9 +28,15 @@ const FormInput: React.FC<FormInputProps> = ({
       onChange={onChange}
       placeholder={placeholder}
       required={required}
-      className="mb-4 p-3 rounded bg-gray-800/70 text-white placeholder-gray-400"
+      className="mb-1 p-3 rounded bg-gray-800/70 text-white placeholder-gray-400"
     />
-  );
+    {error && (
+      <span className="text-red-500 text-sm">
+        {error}
+      </span>
+    )}
+  </div>
+);
 };
 
 export default FormInput;

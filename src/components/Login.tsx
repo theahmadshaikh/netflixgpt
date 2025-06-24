@@ -1,6 +1,4 @@
-// Login.tsx
 import { useState } from "react";
-import Header from "./Header";
 import SignInForm from "./auth/SignInForm";
 import SignUpForm from "./auth/SignUpForm";
 
@@ -16,7 +14,7 @@ const Login = () => {
         className="hidden sm:block absolute top-0 left-0 w-full h-full object-cover -z-10 brightness-50"
       />
 
-      <Header />
+      
 
       <div className="flex sm:items-center sm:justify-center h-full">
         {isSignInForm ? (
