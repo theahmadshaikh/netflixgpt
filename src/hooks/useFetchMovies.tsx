@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import  { useMovieStore, type  MovieCategory } from "../stores/movieStore";
+import { useMovieStore, type MovieCategory } from "../stores/movieStore";
 import { TMDB_API_OPTION } from "../utils/constants";
 
 export const useFetchMovies = (category: MovieCategory, page: number) => {
@@ -9,13 +9,17 @@ export const useFetchMovies = (category: MovieCategory, page: number) => {
   useEffect(() => {
     const fetchMovies = async () => {
       setLoading(category, true);
+
       try {
-        const res = await fetch(
-          `https://api.themoviedb.org/3/movie/${category}?page=${page}`,
-          TMDB_API_OPTION
-        );
+        const url =
+          category === "trending"
+            ? `https://api.themoviedb.org/3/trending/movie/day`
+            : `https://api.themoviedb.org/3/movie/${category}?page=${page}`;
+
+        const res = await fetch(url, TMDB_API_OPTION);
         const data = await res.json();
-        setCategoryData(category, data.results, data.page, data.total_pages);
+
+        setCategoryData(category, data.results, data.page ?? 1, data.total_pages ?? 1);
       } catch (err) {
         console.error(`Error fetching ${category}:`, err);
       } finally {

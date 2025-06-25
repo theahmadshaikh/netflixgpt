@@ -9,7 +9,7 @@ const AppLayout = () => {
   return (
     <>
       <Header showLogout={!isLoginPage} />
-      <main>
+      <main className="bg-black">
         <Outlet />
       </main>
     </>

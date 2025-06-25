@@ -1,59 +1,27 @@
-import { useMovieStore } from "../stores/movieStore";
+// src/pages/Browse.tsx
 import { useFetchMovies } from "../hooks/useFetchMovies";
-import MovieGrid from "../components/MovieGrid";
+import HeroBanner from "../components/HeroBanner";
+import MovieRow from "./MovieRow";
 import type { MovieCategory } from "../stores/movieStore";
-import ShimmerMovieCard from "../shimmer/ShimmerMovieCard";
+
+const categories: { category: MovieCategory; title: string }[] = [
+  { category: "trending", title: "Trending Now" },
+  { category: "now_playing", title: "Now Playing" },
+  { category: "top_rated", title: "Top Rated" },
+  { category: "upcoming", title: "Upcoming" },
+];
+
 const Browse = () => {
-  const category:MovieCategory = "now_playing";
-
-  const { movies, loading, page, totalPages } = useMovieStore(
-    (state) => state.categories[category]
-  );
-
-  const setPage = useMovieStore((state) => state.setPage);
-
-  useFetchMovies(category, page);
-
-  const handleNext = () => {
-    if (page < totalPages) setPage(category, page + 1);
-  };
-
-  const handlePrevious = () => {
-    if (page > 1) setPage(category, page - 1);
-  };
+  // Preload trending movies for HeroBanner
+  useFetchMovies("trending", 1);
 
   return (
-    <div className="min-h-screen bg-black text-white px-4 sm:px-6 md:px-10 pt-24">
-      <h1 className="text-4xl font-bold py-4">Now Playing</h1>
+    <div className="space-y-10">
+      <HeroBanner />
 
-      {loading ? (
-        <div className="grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-          {Array(12)
-            .fill(0)
-            .map((_, i) => (
-              <ShimmerMovieCard key={i} />
-            ))}
-        </div>
-      ) : (
-        <MovieGrid movies={movies} category={category}/>
-      )}
-
-      <div className="flex justify-center gap-4 p-4">
-        <button
-          onClick={handlePrevious}
-          disabled={page === 1}
-          className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded disabled:opacity-50"
-        >
-          Previous
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={page === totalPages}
-          className="px-4 py-2 bg-red-600 hover:bg-red-700 rounded disabled:opacity-50"
-        >
-          Next
-        </button>
-      </div>
+      {categories.map(({ category, title }) => (
+        <MovieRow key={category} category={category} title={title} />
+      ))}
     </div>
   );
 };
