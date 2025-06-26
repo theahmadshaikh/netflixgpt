@@ -6,10 +6,9 @@ import { useFetchMovies } from "../hooks/useFetchMovies";
 interface Props {
   category: MovieCategory;
   title: string;
-  index: number;
 }
 
-const MovieRow: React.FC<Props> = ({ category, title,index }) => {
+const MovieRow: React.FC<Props> = ({ category, title }) => {
   const { movies, loading } = useMovieStore((state) => state.categories[category]);
   console.log("Movies in category:", category, movies);
   useFetchMovies(category, 1);
