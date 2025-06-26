@@ -17,7 +17,7 @@ const MovieRow: React.FC<Props> = ({ category, title }) => {
   }
   return (
     <section
-  className="px-4 sm:px-6 md:px-10"
+  className="px-4 py-4 sm:px-6 md:px-10 sm:py-6 md:py-10"
 >
       <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">
         {title}

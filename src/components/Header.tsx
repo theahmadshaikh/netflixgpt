@@ -17,7 +17,7 @@ const Header = ({ showLogout = true }: { showLogout?: boolean }) => {
   return (
     <header className={`fixed top-0 w-full z-50 px-4 sm:px-40 py-4 transition-colors duration-300
         ${scrolled
-        ? "bg-black"
+        ? "sm:bg-black"
         : "bg-gradient-to-b from-black/80 to-transparent"
       }`}>
       <div className="flex items-center justify-between w-full">

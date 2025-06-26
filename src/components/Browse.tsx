@@ -16,9 +16,9 @@ const Browse = () => {
   useFetchMovies("trending", 1);
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 bg-black">
       <HeroBanner />
-      <div className="-mt-70 relative z-50">
+      <div className="-mt-20 sm:-mt-52 relative z-50">
       {categories.map(({ category, title }) => (
         <MovieRow key={category} category={category} title={title}  />
       ))}
