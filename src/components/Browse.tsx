@@ -18,10 +18,11 @@ const Browse = () => {
   return (
     <div className="space-y-10">
       <HeroBanner />
-
+      <div className="-mt-70 relative z-50">
       {categories.map(({ category, title }) => (
         <MovieRow key={category} category={category} title={title}  />
       ))}
+    </div>
     </div>
   );
 };

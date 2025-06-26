@@ -15,7 +15,7 @@ const HeroBanner = () => {
   if (!movie) return null;
 
   return (
-    <section className="relative w-full h-[100vh] min-h-[300px] max-h-[75vh] overflow-hidden">
+    <section className="relative w-full h-[100vh] min-h-[300px] max-h-[100vh] overflow-hidden">
   {trailerKey ? (
     <iframe
   className="absolute top-0 left-0 w-[200%] h-[200%] -translate-x-1/4 -translate-y-1/4 object-cover pointer-events-none"
@@ -38,7 +38,7 @@ const HeroBanner = () => {
   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 z-10" />
 
   {/* Content */}
-  <div className="absolute z-20 bottom-12 sm:bottom-[10%] left-4 sm:left-16 right-4 text-white">
+  <div className="absolute z-20 bottom-12 sm:bottom-[40%] left-4 sm:left-16 right-4 text-white">
     <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-2 drop-shadow-xl">
       {movie.title}
     </h1>
