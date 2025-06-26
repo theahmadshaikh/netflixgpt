@@ -19,8 +19,8 @@ const Browse = () => {
     <div className="space-y-10">
       <HeroBanner />
 
-      {categories.map(({ category, title }) => (
-        <MovieRow key={category} category={category} title={title} />
+      {categories.map(({ category, title },index) => (
+        <MovieRow key={category} category={category} title={title} index={index} />
       ))}
     </div>
   );

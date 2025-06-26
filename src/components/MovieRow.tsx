@@ -6,9 +6,10 @@ import { useFetchMovies } from "../hooks/useFetchMovies";
 interface Props {
   category: MovieCategory;
   title: string;
+  index: number;
 }
 
-const MovieRow: React.FC<Props> = ({ category, title }) => {
+const MovieRow: React.FC<Props> = ({ category, title,index }) => {
   const { movies, loading } = useMovieStore((state) => state.categories[category]);
   console.log("Movies in category:", category, movies);
   useFetchMovies(category, 1);
@@ -16,7 +17,9 @@ const MovieRow: React.FC<Props> = ({ category, title }) => {
     return;
   }
   return (
-    <section className="px-4 sm:px-6 md:px-10">
+    <section
+  className="px-4 sm:px-6 md:px-10"
+>
       <h2 className="text-xl sm:text-2xl font-semibold text-white mb-2">
         {title}
       </h2>
